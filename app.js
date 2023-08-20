@@ -11,6 +11,12 @@ let boxColors = [
     "rgb(6, 168, 235)",
     "rgb(254, 173, 119)"
 ]
+boxColorsPressed = [
+    "rgba(188, 13, 70,0.5)",
+    "rgba(27, 195, 141,0.5)",
+    "rgba(6, 168, 235,0.5)",
+    "rgba(254, 173, 119,0.5)"
+]
 
 //storing game level in a variable
 let level = 1;
@@ -71,7 +77,7 @@ for(button of buttons) {
         // console.dir(ansIndex)
         userSequence.push(ansIndex);
 
-        buttons[ansIndex].style.backgroundColor = "rgb(190, 195, 219)";
+        buttons[ansIndex].style.backgroundColor = boxColorsPressed[ansIndex];
         setTimeout((e)=>{buttons[ansIndex].style.backgroundColor=boxColors[ansIndex]},50)
 
         checker()
