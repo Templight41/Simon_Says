@@ -57,3 +57,19 @@ h4 {
 ul {
     text-align: left;
 }
+
+.phone {
+    display: none;
+}
+
+@media (max-width: 500px) {
+    .desktop {
+        display: none;
+    }
+    #phoneh3 {
+        display: block;
+    }
+    #phoneli {
+        display: list-item;
+    }
+}

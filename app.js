@@ -1,6 +1,7 @@
 //accessing all the elements in page
 let body = document.querySelector('body');
 let h3 = document.querySelector('h3');
+let phoneh3 = document.querySelector('#phoneh3')
 let boxOne = document.querySelector('#one');
 let boxTwo = document.querySelector('#two');
 let boxThree = document.querySelector('#three');
@@ -36,25 +37,52 @@ function randomButton() {
     return boxIndex = Math.floor(Math.random()*4);
 }
 
-//adding functionality to start the game
-body.addEventListener("keydown", function (event) {
-    if(gameStatus==false) {
-        gameStatus = true;
-        level = 1;
-        h3.innerText = `level ${level}`
-        randomButton()
-        setTimeout(() => {
-            buttons[boxIndex].style.backgroundColor = "rgb(255,255,255)"
-            setTimeout(function () {
-                buttons[boxIndex].style.backgroundColor = boxColors[boxIndex];
-        }, 50)
-        }, 1500);
-        gameSequence.push(boxIndex)
+//starting the game for mobile devises
+let divClicked = false;
+phoneh3.addEventListener("click", function () {
+    divClicked = true;
+    if(divClicked==true) {
+        if(gameStatus==false) {
+            gameStatus = true;
+            level = 1;
+            h3.innerText = `level ${level}`
+            phoneh3.innerText = `level ${level}`
+            randomButton()
+            setTimeout(() => {
+                buttons[boxIndex].style.backgroundColor = "rgb(255,255,255)"
+                setTimeout(function () {
+                    buttons[boxIndex].style.backgroundColor = boxColors[boxIndex];
+            }, 50)
+            }, 1500);
+            gameSequence.push(boxIndex)
+        }
     }
 })
 
+//adding functionality to start the game
+body.addEventListener("keydown", function (event) {
+    if(event.key!="" || divClicked==true) {
+        if(gameStatus==false) {
+            gameStatus = true;
+            level = 1;
+            h3.innerText = `level ${level}`
+            phoneh3.innerText = `level ${level}`
+            randomButton()
+            setTimeout(() => {
+                buttons[boxIndex].style.backgroundColor = "rgb(255,255,255)"
+                setTimeout(function () {
+                    buttons[boxIndex].style.backgroundColor = boxColors[boxIndex];
+            }, 50)
+            }, 1500);
+            gameSequence.push(boxIndex)
+        }
+    }
+})
+
+
+//checking game status
 let i;
-let statusGame = "gameOver"
+let statusGame;
 function checker() {
     for(i=0 ; i<=userSequence.length-1 ; i++){
         if (userSequence[i]!=gameSequence[i]) {
@@ -84,6 +112,7 @@ for(button of buttons) {
         // checking if the answer is correct and continuing
         if(statusGame=="correct") {
             h3.innerText = `level ${level}`
+            phoneh3.innerText = `level ${level}`
             randomButton()
             setTimeout(() => {
                 buttons[boxIndex].style.backgroundColor = "rgb(255,255,255)"
@@ -93,11 +122,13 @@ for(button of buttons) {
             }, 1500);
             level = level + 1;
             h3.innerText = `level ${level}`
+            phoneh3.innerText = `level ${level}`
             gameSequence.push(boxIndex);
             userSequence = [];
             statusGame = "onGoing";
         } else if (statusGame=="gameOver"){
             h3.innerHTML = `<i>Game Over!</i><br>Your score is ${level}<br>Press any key to play again`
+            phoneh3.innerHTML = `<i>Game Over!</i><br>Your score is ${level}<br>Tap on ME to play again`
             gameSequence = [];
             userSequence = [];
             gameStatus = false;
