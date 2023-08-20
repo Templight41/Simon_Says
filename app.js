@@ -34,9 +34,9 @@ function randomButton() {
 body.addEventListener("keydown", function (event) {
     if(gameStatus==false) {
         gameStatus = true;
+        level = 1;
         h3.innerText = `level ${level}`
         randomButton()
-        // console.log(boxIndex)
         setTimeout(() => {
             buttons[boxIndex].style.backgroundColor = "rgb(255,255,255)"
             setTimeout(function () {
@@ -44,7 +44,6 @@ body.addEventListener("keydown", function (event) {
         }, 50)
         }, 1500);
         gameSequence.push(boxIndex)
-        // console.log(gameSequence)
     }
 })
 
@@ -55,9 +54,6 @@ function checker() {
         if (userSequence[i]!=gameSequence[i]) {
             return statusGame = "gameOver";
         }
-        // else if (i<gameSequence.length-1) {
-        //     return statusGame = "onGoing";
-        // }
         else if (userSequence[i]==gameSequence[gameSequence.length-1] && userSequence.length==gameSequence.length) {
             return statusGame = "correct";
         }
@@ -75,11 +71,10 @@ for(button of buttons) {
         // console.dir(ansIndex)
         userSequence.push(ansIndex);
 
-        console.log(gameSequence)
-        console.log(userSequence)
+        buttons[ansIndex].style.backgroundColor = "rgb(190, 195, 219)";
+        setTimeout((e)=>{buttons[ansIndex].style.backgroundColor=boxColors[ansIndex]},50)
 
         checker()
-        console.log(statusGame)
         // checking if the answer is correct and continuing
         if(statusGame=="correct") {
             h3.innerText = `level ${level}`
@@ -99,8 +94,8 @@ for(button of buttons) {
             h3.innerHTML = `<i>Game Over!</i><br>Your score is ${level}<br>Press any key to play again`
             gameSequence = [];
             userSequence = [];
-            level = 1
-            gameStatus = false
+            gameStatus = false;
+            statusGame = "gameEnded";
         }
     })
 }

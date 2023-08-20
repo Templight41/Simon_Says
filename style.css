@@ -42,3 +42,18 @@ h3 {
 #four {
     background-color: rgb(254, 173, 119);
 }
+
+#instructions {
+    padding-top: 30px;
+    width: 400px;
+    height: 400px;
+    text-align: center;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+ul {
+    text-align: left;
+}
