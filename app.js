@@ -12,10 +12,10 @@ let boxColors = [
     "rgb(254, 173, 119)"
 ]
 boxColorsPressed = [
-    "rgba(188, 13, 70,0.5)",
-    "rgba(27, 195, 141,0.5)",
-    "rgba(6, 168, 235,0.5)",
-    "rgba(254, 173, 119,0.5)"
+    "rgba(188, 13, 70,0.75)",
+    "rgba(27, 195, 141,0.75)",
+    "rgba(6, 168, 235,0.75)",
+    "rgba(254, 173, 119,0.75)"
 ]
 
 //storing game level in a variable
